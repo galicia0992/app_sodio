@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import {View, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import {Card, Text, Button, Avatar} from 'react-native-paper';
+import { Platform } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import Alta from '../Modals/Alta';
 import Fab from '../components/buttons/Fab';
 
@@ -26,7 +28,9 @@ const Home = (props: Props) => {
           </Card>      
         </ScrollView>
         </View>
+        
         <Alta visible={visible} setVisible={setVisible} />
+        
       </SafeAreaView>
     </>
   );
