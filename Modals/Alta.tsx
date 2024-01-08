@@ -1,6 +1,23 @@
 import {useState, useRef} from 'react';
 import {StyleSheet} from 'react-native';
-import { Modal, ModalBody, ModalFooter, Text, Center, Button, ButtonText, ModalBackdrop, ModalContent, ModalHeader, Heading, ModalCloseButton, Icon, CloseIcon } from '@gluestack-ui/themed';
+import {
+  Modal,
+  ModalBody,
+  ModalFooter,
+  Text,
+  Center,
+  Button,
+  ButtonText,
+  ModalBackdrop,
+  ModalContent,
+  ModalHeader,
+  Heading,
+  ModalCloseButton,
+  Icon,
+  CloseIcon,
+  InputField,
+  Input,
+} from '@gluestack-ui/themed';
 
 type Props = {
   visible: boolean;
@@ -8,16 +25,15 @@ type Props = {
 };
 
 const Alta = ({visible, setVisible}: Props): JSX.Element => {
-    const ref = useRef(null)
+  const ref = useRef(null);
   return (
     <Center h={300}>
       <Modal
         isOpen={visible}
         onClose={() => {
-          setVisible(false)
+          setVisible(false);
         }}
-        finalFocusRef={ref}
-      >
+        finalFocusRef={ref}>
         <ModalBackdrop />
         <ModalContent>
           <ModalHeader>
@@ -27,11 +43,22 @@ const Alta = ({visible, setVisible}: Props): JSX.Element => {
             </ModalCloseButton>
           </ModalHeader>
           <ModalBody>
-            <Text>
-              Elevate user interactions with our versatile modals. Seamlessly
-              integrate notifications, forms, and media displays. Make an impact
-              effortlessly.
-            </Text>
+            <Input
+              variant="outline"
+              size="md"
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}>
+              <InputField placeholder="Enter Text here" />
+            </Input>
+            <Input
+              variant="outline"
+              size="md"
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}>
+              <InputField placeholder="Enter Text here" />
+            </Input>
           </ModalBody>
           <ModalFooter>
             <Button
@@ -40,9 +67,8 @@ const Alta = ({visible, setVisible}: Props): JSX.Element => {
               action="secondary"
               mr="$3"
               onPress={() => {
-                setVisible(false)
-              }}
-            >
+                setVisible(false);
+              }}>
               <ButtonText>Cancel</ButtonText>
             </Button>
             <Button
@@ -50,9 +76,8 @@ const Alta = ({visible, setVisible}: Props): JSX.Element => {
               action="positive"
               borderWidth="$0"
               onPress={() => {
-                setVisible(false)
-              }}
-            >
+                setVisible(false);
+              }}>
               <ButtonText>Explore</ButtonText>
             </Button>
           </ModalFooter>
