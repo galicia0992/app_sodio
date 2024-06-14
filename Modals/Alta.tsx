@@ -1,5 +1,6 @@
 import {useState, useRef, useEffect} from 'react';
 import {StyleSheet, Platform, KeyboardAvoidingView} from 'react-native';
+import post from '../api/post';
 import {
   Modal,
   ModalBody,
@@ -22,9 +23,9 @@ import {
   CheckIcon,
   AlertCircleIcon,
   CloseCircleIcon,
-  AddIcon
+  AddIcon,
 } from '@gluestack-ui/themed';
-import { CheckBox } from '@ui-kitten/components';
+import {CheckBox} from '@ui-kitten/components';
 
 type Props = {
   visible: boolean;
@@ -34,29 +35,32 @@ type Props = {
 const Alta = ({visible, setVisible}: Props): JSX.Element => {
   const [cantidadSodio, setCantidadSodio] = useState<string>('');
   const [alimento, setAlimento] = useState<string>('');
-  const [icono, setIcono] = useState<any>("")
-  const [colorBadge, setColorBadge] = useState<string>("info")
-  const [advertencia, setAdvertencia] = useState<string>("Primer Conteo")
+  const [icono, setIcono] = useState<any>('');
+  const [colorBadge, setColorBadge] = useState<string>('info');
+  const [advertencia, setAdvertencia] = useState<string>('Primer Conteo');
 
-useEffect(() => {
-  if(parseInt(cantidadSodio) < 250 ){
-    setColorBadge("success")
-    setIcono(CheckIcon)
-    setAdvertencia("Bien")
-  }else if(parseInt(cantidadSodio) >= 251 && parseInt(cantidadSodio) <= 500){
-    setColorBadge("warning")
-    setIcono(AlertCircleIcon)
-    setAdvertencia("Cuidado")
-  }else if(parseInt(cantidadSodio) >= 501){
-    setColorBadge("error")
-    setIcono(CloseCircleIcon)
-    setAdvertencia("Es mucho")
-  }else{
-    setColorBadge("muted")
-    setIcono(AddIcon)
-    setAdvertencia("Primer Conteo")
-  }
-}, [cantidadSodio])
+  useEffect(() => {
+    if (parseInt(cantidadSodio) < 250) {
+      setColorBadge('success');
+      setIcono(CheckIcon);
+      setAdvertencia('Bien');
+    } else if (
+      parseInt(cantidadSodio) >= 251 &&
+      parseInt(cantidadSodio) <= 500
+    ) {
+      setColorBadge('warning');
+      setIcono(AlertCircleIcon);
+      setAdvertencia('Cuidado');
+    } else if (parseInt(cantidadSodio) >= 501) {
+      setColorBadge('error');
+      setIcono(CloseCircleIcon);
+      setAdvertencia('Es mucho');
+    } else {
+      setColorBadge('muted');
+      setIcono(AddIcon);
+      setAdvertencia('Primer Conteo');
+    }
+  }, [cantidadSodio]);
 
   const ref = useRef(null);
   return (
@@ -124,7 +128,7 @@ useEffect(() => {
                 onPress={() => {
                   setVisible(false);
                 }}>
-                <ButtonText>Cancel</ButtonText>
+                <ButtonText>Cancelar</ButtonText>
               </Button>
               <Button
                 size="sm"
@@ -132,8 +136,11 @@ useEffect(() => {
                 borderWidth="$0"
                 onPress={() => {
                   setVisible(false);
+                  setAlimento('');
+                  setCantidadSodio('');
+                  post(alimento, cantidadSodio)
                 }}>
-                <ButtonText>Explore</ButtonText>
+                <ButtonText>Guardar</ButtonText>
               </Button>
             </ModalFooter>
           </ModalContent>

@@ -22,7 +22,7 @@ const Fab = ({setVisible}: Props) => {
         isPressed={false}
         onPress={() => setVisible(true)}>
         <FabIcon as={AddIcon} mr="$1" />
-        <FabLabel>Quick start</FabLabel>
+        <FabLabel>Nuevo</FabLabel>
       </FAB>
     </View>
   );

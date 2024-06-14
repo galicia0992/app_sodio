@@ -1,16 +1,21 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {View, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import {Card, Text, Button, Avatar} from 'react-native-paper';
 import { Platform } from 'react-native';
 import { KeyboardAvoidingView } from 'react-native';
 import Alta from '../Modals/Alta';
 import Fab from '../components/buttons/Fab';
-
+import getInfo from '../api/getInfo';
 type Props = {};
 
 const Home = (props: Props) => {
   const [visible, setVisible] = useState<boolean>(false);
+  const [getInf, setGetInf] = useState<any[]>([])
 
+  useEffect(() => {
+    getInfo(setGetInf)
+  }, [])
+ 
   return (
     <>
       <SafeAreaView style={styles.bg}>
@@ -19,13 +24,25 @@ const Home = (props: Props) => {
           >
           </Fab>
         <View style={styles.cardView}>
-        <ScrollView>
-          <Card>
+        <Card>
             <Card.Content>
               <Text variant="titleLarge">Presiona 'Nuevo' para iniciar </Text>
               <Text variant="bodyMedium">Rellena los campos necesarios</Text>
             </Card.Content>
-          </Card>      
+          </Card> 
+        <ScrollView>
+              
+                {
+                  getInf.map(item => {
+                    return (
+                      <View key={item.id}>
+                        <Text>{item.alimento}</Text>
+                        <Text>{item.cantidadSodio}</Text>
+                      </View>
+                    )
+                  })
+                }
+              
         </ScrollView>
         </View>
         
