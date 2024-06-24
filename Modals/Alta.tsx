@@ -26,6 +26,7 @@ import {
   AddIcon,
 } from '@gluestack-ui/themed';
 import {CheckBox} from '@ui-kitten/components';
+import {useDateContext} from '../context/DateContext';
 
 type Props = {
   visible: boolean;
@@ -39,6 +40,7 @@ const Alta = ({visible, setVisible}: Props): JSX.Element => {
   const [colorBadge, setColorBadge] = useState<string>('info');
   const [advertencia, setAdvertencia] = useState<string>('Primer Conteo');
 
+  const fullDate = useDateContext();
   useEffect(() => {
     if (parseInt(cantidadSodio) < 250) {
       setColorBadge('success');
@@ -138,7 +140,7 @@ const Alta = ({visible, setVisible}: Props): JSX.Element => {
                   setVisible(false);
                   setAlimento('');
                   setCantidadSodio('');
-                  post(alimento, cantidadSodio)
+                  post(alimento, cantidadSodio, fullDate);
                 }}>
                 <ButtonText>Guardar</ButtonText>
               </Button>

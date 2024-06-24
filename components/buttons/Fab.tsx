@@ -12,6 +12,7 @@ type Props = {
 };
 
 const Fab = ({setVisible}: Props) => {
+ 
   return (
     <View style={styles.fabStyle}>
       <FAB

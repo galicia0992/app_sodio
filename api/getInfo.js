@@ -7,9 +7,13 @@ const getInfo = async (setGetInf) => {
   onValue(starCountRef, snapshot => {
     const data = snapshot.val();
     let arr = []
+    
     Object.values(data).map(item => {
-      arr.push(item);
+      Object.values(item).map(item2 =>{
+        arr.push(item2)
+      })
     });
+    
     setGetInf(arr);
   });
 };
