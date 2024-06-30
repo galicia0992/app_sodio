@@ -1,13 +1,14 @@
 import {View, Text, ViewBase} from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 type Props = {
   route: any;
 };
 
 export default function SodioInfoView({route}: Props) {
+  
   const {infoObjSodio} = route.params;
-  console.log(infoObjSodio);
+  
   return (
     <View>
       {

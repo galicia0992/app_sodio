@@ -10,6 +10,18 @@ import {PaperProvider} from 'react-native-paper';
 import DateProvider from './context/DateContext';
 import SodioInfoView from './views/SodioInfoView';
 
+const configuration = {
+  animation: 'spring',
+  config: {
+    stiffness: 1000,
+    damping: 500,
+    mass: 3,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};
+
 function App(): React.JSX.Element {
   const Stack = createNativeStackNavigator();
   return (

@@ -21,6 +21,8 @@ const SodioInfo = ({ fullDate, sodioFechas, getInf}: Props) => {
   const navigation = useNavigation()
   let arr: any =[]
   
+  
+  
   useEffect(() => {
     Object.keys(sodioFechas).map(item =>{
       if (item == fullDate) {
@@ -37,11 +39,13 @@ const SodioInfo = ({ fullDate, sodioFechas, getInf}: Props) => {
       }
     })
     setInfoObjSodio(arr)
-  }, [sodio])
+    
+  }, [sodio, getInf])
+  
   
   const sodioInfoNavigation = (): void =>{
     
-    navigation.navigate("SodioInfo", {infoObjSodio})
+    navigation.navigate('SodioInfo', {infoObjSodio})
   }
   
   return (
