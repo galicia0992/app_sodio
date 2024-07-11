@@ -18,6 +18,7 @@ const SodioInfo = ({ fullDate, sodioFechas, getInf}: Props) => {
   const [cantidadDeSodio, setCantidadDeSodio] = useState<any>("")
   const [sodio, setSodio] = useState("")
   const [infoObjSodio, setInfoObjSodio] = useState<any>([])
+  const [progressBarStatus, setProgressBarStatus] = useState<string>("primary")
   const navigation = useNavigation()
   let arr: any =[]
   
@@ -41,6 +42,17 @@ const SodioInfo = ({ fullDate, sodioFechas, getInf}: Props) => {
     setInfoObjSodio(arr)
     
   }, [sodio, getInf])
+
+  useEffect(() => {
+    if(cantidadDeSodio <= 499){
+      setProgressBarStatus("success")
+    }else if(cantidadDeSodio >= 500 && cantidadDeSodio <= 1100){
+      setProgressBarStatus("warning")
+    }else{
+      setProgressBarStatus("danger")
+    }
+  }, [cantidadDeSodio])
+  
   
   
   const sodioInfoNavigation = (): void =>{
@@ -58,6 +70,7 @@ const SodioInfo = ({ fullDate, sodioFechas, getInf}: Props) => {
         <Progressbar
           progress={(cantidadDeSodio / 15000) * 10}
           size="large"
+          status={progressBarStatus}
         />
       </View>
       <Text
